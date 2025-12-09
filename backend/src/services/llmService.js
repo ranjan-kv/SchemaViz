@@ -125,8 +125,8 @@ Important rules:
             throw new Error('Gemini API key is not configured. Please set GEMINI_API_KEY in your .env file');
         }
 
-        if (error.message.includes('quota') || error.message.includes('rate limit')) {
-            throw new Error('Gemini API quota exceeded or rate limited. Please try again later.');
+        if (error.message.includes('quota') || error.message.includes('rate limit') || error.message.includes('429')) {
+            throw new Error('Gemini API quota exceeded. Free tier limit reached. Please wait a minute and try again, or upgrade your API plan at https://aistudio.google.com');
         }
 
         throw new Error(`Failed to extract schema with Gemini: ${error.message}`);
